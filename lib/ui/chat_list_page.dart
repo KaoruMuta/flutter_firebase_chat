@@ -16,7 +16,7 @@ class ChatListPage extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             child: Container(
-              padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
+              padding: const EdgeInsets.all(12.0),
               child: Row(
                 children: [
                   const CircleAvatar(
@@ -56,7 +56,6 @@ class ChatListPage extends StatelessWidget {
         separatorBuilder: (BuildContext context, int index) {
           return const Divider(height: 0.5);
         },
-        padding: const EdgeInsets.only(left: 12.0, right: 12.0),
       ),
     );
   }
