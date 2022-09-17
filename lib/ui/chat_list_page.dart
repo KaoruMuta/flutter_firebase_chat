@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat/ui/chat_detail_page.dart';
 
 class ChatListPage extends StatelessWidget {
   const ChatListPage({Key? key}) : super(key: key);
@@ -13,35 +14,43 @@ class ChatListPage extends StatelessWidget {
       body: ListView.separated(
         itemCount: 32,
         itemBuilder: (BuildContext context, int index) {
-          return Container(
-            padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
-            child: Row(
-              children: [
-                const CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      "https://kaorumuta.me/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fme.ca58372c.png&w=828&q=100"),
-                ),
-                const SizedBox(width: 12.0),
-                Flexible(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        "Kaoru Muta",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(height: 4.0),
-                      Text(
-                        "おけ！おけ！おけ！おけ！おけ！おけ！おけ！おけ！おけ！おけ！おけ！おけ！おけ！",
-                        style: TextStyle(fontSize: 10, color: Colors.black54),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
+          return GestureDetector(
+            child: Container(
+              padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
+              child: Row(
+                children: [
+                  const CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://kaorumuta.me/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fme.ca58372c.png&w=828&q=100"),
                   ),
-                ),
-              ],
+                  const SizedBox(width: 12.0),
+                  Flexible(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          "Kaoru Muta",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 4.0),
+                        Text(
+                          "おけ！おけ！おけ！おけ！おけ！おけ！おけ！おけ！おけ！おけ！おけ！おけ！おけ！",
+                          style: TextStyle(fontSize: 10, color: Colors.black54),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ChatDetailPage()),
+              );
+            },
           );
         },
         separatorBuilder: (BuildContext context, int index) {
