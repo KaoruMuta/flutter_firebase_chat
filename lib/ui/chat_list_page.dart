@@ -77,7 +77,9 @@ class ChatListPage extends ConsumerWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ChatDetailPage(),
+                    builder: (context) => ChatDetailPage(
+                      chat: data[index],
+                    ),
                   ),
                 );
               },

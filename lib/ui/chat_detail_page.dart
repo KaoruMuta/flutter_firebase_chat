@@ -1,21 +1,22 @@
-// ignore_for_file: unnecessary_const
-
 import 'package:flutter/material.dart';
+import 'package:flutter_chat/model/chat.dart';
 
 class ChatDetailPage extends StatelessWidget {
-  const ChatDetailPage({Key? key}) : super(key: key);
+  const ChatDetailPage({Key? key, required this.chat}) : super(key: key);
+
+  final Chat chat;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Kaoru Muta"),
+        title: Text(chat.groupName),
       ),
       body: Column(
         children: [
           Flexible(
             child: ListView.builder(
-              itemCount: 3,
+              itemCount: chat.messages.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   padding: const EdgeInsets.only(left: 8, right: 8),
@@ -24,17 +25,18 @@ class ChatDetailPage extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          const CircleAvatar(
+                          CircleAvatar(
                             maxRadius: 12.0,
                             backgroundImage: NetworkImage(
-                                "https://kaorumuta.me/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fme.ca58372c.png&w=828&q=100"),
+                              chat.imageUrl,
+                            ),
                           ),
                           const SizedBox(width: 8),
                           Container(
                             padding: const EdgeInsets.all(8),
                             margin: const EdgeInsets.only(top: 16),
-                            child: const Text(
-                              "おはようございます",
+                            child: Text(
+                              chat.messages[index]["content"],
                             ),
                             constraints: BoxConstraints(
                               maxWidth: MediaQuery.of(context).size.width * 0.5,
@@ -82,7 +84,10 @@ class ChatDetailPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.send))
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.send),
+                  )
                 ],
               ),
             ),
