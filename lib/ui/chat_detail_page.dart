@@ -76,7 +76,7 @@ class ChatDetailPage extends StatelessWidget {
                         filled: true,
                         isDense: true,
                         contentPadding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
-                        prefixIcon: const Icon(Icons.search),
+                        prefixIcon: const Icon(Icons.message),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(32),
                           borderSide: BorderSide.none,
