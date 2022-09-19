@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat/model/chat.dart';
 import 'package:flutter_chat/model/message.dart';
@@ -27,7 +28,7 @@ class ChatDetailPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // provider
     final inputFieldController = ref.watch(chatTextFieldInputProvider);
-    final String myUserId = ref.read(userProvider);
+    final User? currentUser = ref.read(userProvider);
     final AsyncValue<Chat> chatSnapshot = ref.watch(chatProvider(chat.groupId));
 
     return Scaffold(
@@ -49,7 +50,8 @@ class ChatDetailPage extends ConsumerWidget {
                         ChatMessage(
                           content: data.messages[index]["content"],
                           imageUrl: data.imageUrl,
-                          isMine: data.messages[index]["senderId"] == myUserId,
+                          isMine: data.messages[index]["senderId"] ==
+                              currentUser!.uid,
                         ),
                       ],
                     ),
@@ -103,7 +105,7 @@ class ChatDetailPage extends ConsumerWidget {
                               Message(
                                 inputFieldController.text,
                                 Timestamp.fromDate(DateTime.now()),
-                                myUserId,
+                                currentUser!.uid,
                               ).toMap(),
                             ],
                           )

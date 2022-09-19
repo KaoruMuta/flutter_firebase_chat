@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat/model/chat.dart';
+import 'package:flutter_chat/provider/user_provider.dart';
 import 'package:flutter_chat/ui/chat_detail_page.dart';
+import 'package:flutter_chat/ui/login_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final chatProvider = StreamProvider.autoDispose<List<Chat>>((ref) {
@@ -24,10 +27,24 @@ class ChatListPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Chat App"),
+        title: const Text(
+          "ホーム",
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LoginPage(),
+                ),
+                (_) => false,
+              );
+            },
             icon: const Icon(Icons.logout),
           ),
         ],
