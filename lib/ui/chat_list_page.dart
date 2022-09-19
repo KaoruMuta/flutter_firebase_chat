@@ -23,6 +23,7 @@ class ChatListPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.read(userProvider);
     final AsyncValue<List<Chat>> chatList = ref.watch(chatProvider);
 
     return Scaffold(
@@ -33,6 +34,25 @@ class ChatListPage extends ConsumerWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
+        leading: ElevatedButton(
+            onPressed: () {},
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: NetworkImage(
+                    user?.photoURL ??
+                        "https://cdn3.vectorstock.com/i/1000x1000/80/82/person-gray-photo-placeholder-man-vector-22808082.jpg",
+                  ),
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
+            ),
+            style: ElevatedButton.styleFrom(
+              shape: const CircleBorder(),
+              elevation: 0,
+              shadowColor: Colors.transparent,
+            )),
         actions: [
           IconButton(
             onPressed: () async {
