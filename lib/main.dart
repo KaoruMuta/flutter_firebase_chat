@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_chat/provider/user_provider.dart';
 import 'package:flutter_chat/ui/chat_list_page.dart';
 import 'package:flutter_chat/ui/login_page.dart';
-import 'package:flutter_chat/ui/signup_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'firebase_options.dart';
 
